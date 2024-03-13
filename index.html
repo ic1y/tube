@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" class="flex">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>IMDB</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="flex column">
+	<nav>
+		<div id="form" class="flex">
+			<span id="searchTitle">IMDB</span>
+			<input type="text" id="query">
+			<button id="search">Search</button>
+		</div>
+	</nav>
+	<main>
+		<div id="title" class="hidden">
+			<iframe class="hidden" sandbox = "allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" width="1000" height="600" src="" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen id="iframe"></iframe>
+		</div>
+		<div id="results" class="hidden"></div>
+	</main>
+	</div>
+	<script src="app.js"></script>
+</body>
+</html>
