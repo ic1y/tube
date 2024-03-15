@@ -56,14 +56,16 @@ if (urlParams.has("id")) {
 				titleDiv.append(titleEl);
 			} else if (title.contentType === "tvSeries") {
 				titleDiv.append(titleEl);
+				let requests = []
 				for (let season of title.all_seasons) {
-					fetch("https://imdb-api.icey-ggjt.workers.dev/title/" + id + "/season/" + season.id).then(res => res.json().then(json => {
+					requests.push(fetch("https://imdb-api.icey-ggjt.workers.dev/title/" + id + "/season/" + season.id).then(res => res.json().then(json => {
 						const season = json;
-						const seasonTitle = document.createElement("h2");
-						seasonTitle.innerText = "Season " + season.season_id;
-						const episodesDiv = document.createElement("div");
-						episodesDiv.classList.add("season");
-						titleDiv.append(seasonTitle, episodesDiv);
+						// const seasonTitle = document.createElement("h2");
+						// seasonTitle.innerText = "Season " + season.season_id;
+						const seasonDiv = document.createElement("div");
+						seasonDiv.classList.add("season");
+						seasonDiv.dataset.id = season.season_id;
+						// titleDiv.append(seasonTitle, seasonDiv);
 						const episodes = json.episodes;
 						for (let episode of episodes) {
 							// console.log(episode.title);
@@ -86,10 +88,22 @@ if (urlParams.has("id")) {
 							epTitle.innerText = episode.title;
 							epTitle.style.overflowWrap = "break-word";
 							episodeDiv.append(image, epTitle);
-							episodesDiv.append(episodeDiv);
+							seasonDiv.append(episodeDiv);
 						}
-					}));
+						return seasonDiv;
+
+					})));
 				}
+
+				Promise.all(requests).then((seasons) => {
+					console.log(seasons)
+					seasons.sort((a, b) => a.dataset.id - b.dataset.id);
+					for (let season of seasons) {
+						const seasonTitle = document.createElement("h2");
+						seasonTitle.innerText = "Season " + season.dataset.id;
+						titleDiv.append(seasonTitle, season);
+					}
+				})
 			}
 			titleDiv.classList.remove("hidden");
 		});
