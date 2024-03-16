@@ -48,13 +48,13 @@ if (urlParams.has("id")) {
 			titleDiv.classList.add("flex", "column");
 			const titleEl = document.createElement("h1");
 			titleEl.innerText = title.title;
-			if (title.contentType === "movie") {
+			if (title.contentType === "movie" || title.contentType === "tvMovie") {
 				iframe.src = "https://vidsrc.xyz/embed/movie/" + id;
 				iframe.classList.remove("hidden");
 				iframe.height = (window.innerWidth - 32) * (9 / 16);
 				iframe.width = window.innerWidth - 32;
 				titleDiv.append(titleEl);
-			} else if (title.contentType === "tvSeries") {
+			} else if (title.contentType === "tvSeries" || title.contentType === "tvMiniSeries") {
 				titleDiv.append(titleEl);
 				let requests = []
 				for (let season of title.all_seasons) {
