@@ -35,28 +35,28 @@ body {
 }
 
 .result {
-	width: 180px;
+	width: 11.25rem;
 }
 
 .episode {
-	width: 360px;
+	width: 22.5rem;
 }
 
 #results, .season {
 	width: calc(100vw - 32px);	
   display: grid;
 	grid-auto-rows: 1fr;
-	row-gap: 8px;
+	row-gap: 0.5rem;
 	justify-content: center;
 	align-items: center;
 }
 
 #results {
-  grid-template-columns: repeat(auto-fill, 180px);
+  grid-template-columns: repeat(auto-fill, 11.25rem);
 }
 
 .season {
-  grid-template-columns: repeat(auto-fill, 360px);
+  grid-template-columns: repeat(auto-fill, 22.5rem);
 }
 
 #searchTitle, #title h1 {
@@ -70,11 +70,16 @@ p {
 }
 
 #form {
-	column-gap: 8px;
+	column-gap: 0.5rem;
 }
 
 header, main, nav {
-	margin: 8px 0;
+	margin: 0.5rem 0;
+}
+
+iframe {
+	width: calc(100vw - 2rem);
+	height: calc(((100vw - 2rem) / 16) * 9);
 }
 
 @media screen and (prefers-color-scheme: dark) {

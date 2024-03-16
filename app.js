@@ -47,12 +47,12 @@ if (urlParams.has("id")) {
 		resp.json().then((title) => {
 			titleDiv.classList.add("flex", "column");
 			const titleEl = document.createElement("h1");
-			titleEl.innerText = title.title;
+			document.title = titleEl.innerText = title.title;
 			if (title.contentType === "movie" || title.contentType === "tvMovie") {
 				iframe.src = "https://vidsrc.xyz/embed/movie/" + id;
 				iframe.classList.remove("hidden");
-				iframe.height = (window.innerWidth - 32) * (9 / 16);
-				iframe.width = window.innerWidth - 32;
+				// iframe.height = (window.innerWidth - 32) * (9 / 16);
+				// iframe.width = window.innerWidth - 32;
 				titleDiv.append(titleEl);
 			} else if (title.contentType === "tvSeries" || title.contentType === "tvMiniSeries") {
 				titleDiv.append(titleEl);
@@ -77,7 +77,7 @@ if (urlParams.has("id")) {
 								iframe.classList.remove("hidden");
 								iframe.height = (window.innerWidth - 32) * (9 / 16);
 								iframe.width = window.innerWidth - 32;
-								titleEl.innerText = title.title + " S" + season.season_id + "E" + episode.idx + " " +  episode.title;
+								document.title = titleEl.innerText = title.title + " S" + season.season_id + "E" + episode.idx + " " +  episode.title;
 							})
 							episodeDiv.classList.add("flex", "column", "episode");
 							const image = document.createElement("img");
